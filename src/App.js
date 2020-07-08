@@ -4,6 +4,24 @@ import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 import { Grid } from 'semantic-ui-react';
 
+const list = [
+  { src: "https://jsfiddle.net/aapodshivalov/c1js68f9/show", name: "LIST" },
+  { src: "https://jsfiddle.net/aapodshivalov/Ljkh1xcv/show", name: "COLORS" },
+  { src: "https://jsfiddle.net/aapodshivalov/fzgym5jn/show", name: "PARTY" }
+];
+
+const setRow = ({ src, name, i }) => {
+  const title = "title" + i;
+  return <Grid.Row key={i}>
+  <Grid.Column>
+      <div>{name}</div>
+  </Grid.Column>
+  <Grid.Column>
+    <div><a href={src} target="_blank" >{src}</a></div>
+    <iframe title={title} src={src}></iframe>
+  </Grid.Column>
+</Grid.Row>
+}
 
 function App() {
   return (
@@ -16,30 +34,9 @@ function App() {
       </header>
 
         <Grid columns={2} divided='vertically' celled='internally'>
-          <Grid.Row>
-            <Grid.Column>
-                LIST
-            </Grid.Column>
-            <Grid.Column>
-              <iframe title="title" src="https://jsfiddle.net/aapodshivalov/c1js68f9/show"></iframe>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column>
-                COLORS
-            </Grid.Column>
-            <Grid.Column>
-              <iframe title="title2" src="https://jsfiddle.net/aapodshivalov/Ljkh1xcv/show"></iframe>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column>
-                PARTY
-            </Grid.Column>
-            <Grid.Column>
-              <iframe title="title3" src="https://jsfiddle.net/aapodshivalov/fzgym5jn/show"></iframe>
-            </Grid.Column>
-          </Grid.Row>
+        {list.map((item, i) => (
+          setRow({ src: item.src, name: item.name, i })
+        ))}
         </Grid>
 
     </div>
